@@ -51,9 +51,9 @@ b) For Armv7 or Armv8 Aarch32, use the **arm-none-eabi-** toolchain.
 
 Download it from the [Arm Developer's][arm-toolchains]  website.
 
-c) For RISC-V, use the **riscv64-unknown-elf-** toolchain.
+c) For RISC-V (both RV64 and RV32), use the **riscv64-unknown-elf-** toolchain.
 
-Download it from [SiFive's Freedom Tools][riscv-toolchains] github reposiroty.
+Download it from [Bao's Project RISC-V Toolchain repo][riscv-toolchains].
 
 Install the toolchain. Then, set the **CROSS_COMPILE** environment variable 
 with the reference toolchain prefix path:
@@ -289,4 +289,4 @@ Build the firmware and deploy the system according to the target platform:
 <!-- Links -->
 
 [arm-toolchains]: https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads
-[riscv-toolchains]: https://github.com/sifive/freedom-tools/releases
+[riscv-toolchains]: https://github.com/bao-project/bao-riscv-toolchain/releases
