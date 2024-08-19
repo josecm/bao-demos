@@ -1,4 +1,14 @@
-# Qemu RV64 virt
+# Qemu RISC-V virt
+
+## 0) Set the RISC-V XLEN 
+
+If you are targetting a RV64:
+
+`export RISCV_XLEN=64`
+
+Else, if you are targetting RV32:
+
+`export RISCV_XLEN=32`
 
 ## 1) Download build and install RV64 qemu
 
@@ -17,7 +27,7 @@ export BAO_DEMOS_QEMU=$BAO_DEMOS_WRKDIR_SRC/qemu-$ARCH
 git clone https://github.com/qemu/qemu.git $BAO_DEMOS_QEMU --depth 1\
    --branch v7.2.0
 cd $BAO_DEMOS_QEMU
-./configure --target-list=riscv64-softmmu --enable-slirp
+./configure --target-list=riscv$RISCV_XLEN -softmmu --enable-slirp
 make -j$(nproc)
 sudo make install
 ```
@@ -29,6 +39,7 @@ export BAO_DEMOS_OPENSBI=$BAO_DEMOS_WRKDIR_SRC/opensbi
 git clone https://github.com/bao-project/opensbi.git $BAO_DEMOS_OPENSBI\
     --depth 1 --branch bao/demo
 make -C $BAO_DEMOS_OPENSBI PLATFORM=generic \
+    PLATFORM_RISCV_XLEN=$RISCV_XLEN \
     FW_PAYLOAD=y \
     FW_PAYLOAD_FDT_ADDR=0x80100000\
     FW_PAYLOAD_PATH=$BAO_DEMOS_WRKDIR_IMGS/bao.bin
@@ -39,8 +50,8 @@ cp $BAO_DEMOS_OPENSBI/build/platform/generic/firmware/fw_payload.elf\
 ## 3) Run QEMU
 
 ```
- qemu-system-riscv64 -nographic\
-    -M virt -cpu rv64 -m 4G -smp 4\
+ qemu-system-$ARCH -nographic\
+    -M virt -cpu rv$RISCV_XLEN,priv_spec=v1.12.0,sstc=true -m 4G -smp 4\
     -bios $BAO_DEMOS_WRKDIR_IMGS/opensbi.elf\
     -device virtio-net-device,netdev=net0 -netdev user,id=net0,hostfwd=tcp:127.0.0.1:5555-:22\
     -device virtio-serial-device -chardev pty,id=serial3 -device virtconsole,chardev=serial3 -S

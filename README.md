@@ -225,7 +225,8 @@ Build the firmware and deploy the system according to the target platform:
 * [FVP-R Aarch32](platforms/fvp-r-aarch32/README.md)
 
 #### RISC-V platforms:
-* [QEMU virt](platforms/qemu-riscv64-virt/README.md)
+* [QEMU RV64 virt](platforms/qemu-riscv64-virt/README.md)
+* [QEMU RV32 virt](platforms/qemu-riscv64-virt/README.md)
 
 ---
 
@@ -244,6 +245,8 @@ Build the firmware and deploy the system according to the target platform:
 | FVP-A AArch32       | fvp-a-aarch32     | aarch32 |
 | FVP-R AArch32       | fvp-r-aarch32     | aarch32 |
 | QEMU RV64 virt      | qemu-riscv64-virt | riscv64 |
+| QEMU RV32 virt      | qemu-riscv32-virt | riscv32 |
+
 
 |                  | DEMO             |
 | ---------------- | ---------------- |
@@ -267,6 +270,7 @@ Build the firmware and deploy the system according to the target platform:
 | fvp-r-aarch64     | x         | x              | x            | x                |
 | fvp-r-aarch32     | x         |                |              | x                |
 | qemu-riscv64-virt | x         | x              |              |                  |
+| qemu-riscv32-virt | x         | x              |              |                  |
 
 
 ---
