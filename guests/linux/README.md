@@ -19,7 +19,7 @@ For all other platforms clone the latest mainline Linux release:
 
 ```
 export BAO_DEMOS_LINUX_REPO=https://github.com/torvalds/linux.git
-export BAO_DEMOS_LINUX_VERSION=v6.1
+export BAO_DEMOS_LINUX_VERSION=v6.10
 ```
 
 Setup an environment variable pointing to Linux's source code:
@@ -44,6 +44,12 @@ platform specific config to be used by buildroot:
 export BAO_DEMOS_LINUX_CFG_FRAG=$(ls $BAO_DEMOS_LINUX/configs/base.config\
     $BAO_DEMOS_LINUX/configs/$ARCH.config\
     $BAO_DEMOS_LINUX/configs/$PLATFORM.config 2> /dev/null)
+```
+
+# Set configuration for busybox
+
+```
+export BAO_DEMOS_BUSYBOX_CFG_FRAG=$BAO_DEMOS_LINUX/buildroot/busybox.cfg
 ```
 
 ## Use Buildroot to build Linux with a built-in initramfs
